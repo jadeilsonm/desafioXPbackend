@@ -1,0 +1,29 @@
+{
+  "name": "desafioxpbackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jadeilsonm/desafioXPbackend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jadeilsonm/desafioXPbackend/issues"
+  },
+  "homepage": "https://github.com/jadeilsonm/desafioXPbackend#readme",
+  "dependencies": {
+    "mysql2": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.7",
+    "typescript-express-starter": "^9.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.4"
+  }
+}
