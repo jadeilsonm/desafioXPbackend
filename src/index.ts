@@ -1,10 +1,20 @@
-import app from './app';
-import 'dotenv/config';
+import express from 'express';
+import { AppDataSource } from './data-source';
+import router from './routes';
 
-const PORT = process.env.SERVER_PORT || 3000;
+AppDataSource.initialize().then(() => {
+  const app = express ();
 
-const server = app.listen(PORT, () => console.log(
-  `Server is running on PORT: ${PORT}`,
-));
+  app.use(express.json());
 
-export default server;
+  app.use(router);
+
+  const PORT = process.env.SERVER_PORT || 3000;
+  
+  return app.listen(PORT, () => console.log(
+    `Server is running on PORT: ${PORT}`,
+  ));
+
+});
+
+
