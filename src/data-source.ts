@@ -9,9 +9,9 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-  synchronize: true,
-  entities: [`${__dirname}/**/model/*.{ts,js}`],
-  migrations: [`${__dirname}/**/migrations/*.{ts,js}`]
+  // synchronize: true,
+  entities: [`${__dirname}/**/model/*{.ts,.js}`],
+  migrations: [`${__dirname}/**/migrations/*{.ts,.js}`]
 });
 
 // subscribers: [],
