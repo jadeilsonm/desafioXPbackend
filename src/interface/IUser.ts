@@ -1,7 +1,7 @@
 interface IUser {
   id?: number,
   name: string,
-  emial: string,
+  email: string,
   password?: string,
 }
 

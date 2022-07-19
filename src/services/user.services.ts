@@ -7,10 +7,7 @@ import { generateJWTToken } from '../shared/JWT';
 const createdUser = async (user: IUser): Promise<IToken> => {
   const newUser = UserRepository.create(user);
   await UserRepository.save(newUser);
-  let token = '';
-  
-  console.log(newUser);
-  
+  let token = '';  
   if (newUser.id) {
     token = generateJWTToken(JSON.stringify(user));
   }
