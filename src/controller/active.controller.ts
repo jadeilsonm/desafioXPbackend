@@ -7,7 +7,7 @@ const activeRouter = Router();
 
 activeRouter.post(
   '/', 
-  async (req: Request, res: Response): Promise<Response> => {
+  async (__req: Request, res: Response): Promise<Response> => {
 
     return res.status(StatusCodes.OK).json();
   },
