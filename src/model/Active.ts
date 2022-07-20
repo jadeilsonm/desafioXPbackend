@@ -20,5 +20,4 @@ export class Active {
   @OneToOne(() => Investiment, (investment) => investment.active )
     investment: Investiment;
 
-
 }

@@ -1,8 +1,12 @@
-interface IUser {
+export interface IUserLogin {
+  password: string,
+  email: string,
+}
+
+interface IUser extends IUserLogin {
   id?: number,
   name: string,
-  email: string,
-  password?: string,
+  valor: number,
 }
 
 export default IUser;
