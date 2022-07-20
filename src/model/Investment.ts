@@ -1,11 +1,20 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity,JoinColumn,ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Active } from './Active';
+import { User } from './User';
 
 @Entity('investiments')
 export class Investiment {
   @PrimaryGeneratedColumn({ type: 'integer'})
-    CodAtivo: number;
+    id: number;
   @Column({ type: 'integer' })
     QtdeAtivo: number;
-  @Column({ type: 'integer'})
-    CodCliente: number;
+
+  @ManyToOne(() => User, (user) => user.investment)
+  @JoinColumn({name: 'codCliente'})
+    user: User;
+
+  @OneToOne(() => Active, (active) => active.investment)
+  @JoinColumn()
+    active: Active;
+
 }

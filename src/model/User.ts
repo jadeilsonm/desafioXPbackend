@@ -1,13 +1,24 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Active } from './Active';
+import { Investiment } from './Investment';
 
-@Entity('users')
+@Entity('accounts')
 export class User {
   @PrimaryGeneratedColumn({ type: 'integer'})
-    id: number;
+    codCliente: number;
   @Column({ type: 'varchar', length: 100})
     name: string;
   @Column({ type: 'varchar', length: 150, unique: true})
     email: string;
   @Column({ type: 'varchar', length: 255})
     password: string;
+  @Column({ type: 'decimal' })
+    valor: number;
+  
+  @OneToMany(() => Active, (active) => active.user)
+    active: Active[];
+
+  @OneToMany(() => Investiment, (investment) => investment.user)
+    investment: Investiment[];
+
 }
