@@ -5,8 +5,8 @@ export interface IUserLogin {
 
 interface IUser extends IUserLogin {
   id?: number,
-  name: string,
-  valor: number,
+  nome: string,
+  valor?: number,
 }
 
 export default IUser;

@@ -5,15 +5,15 @@ import { Investiment } from './Investment';
 @Entity('accounts')
 export class User {
   @PrimaryGeneratedColumn({ type: 'integer'})
-    codCliente: number;
+    CodCliente: number;
   @Column({ type: 'varchar', length: 100})
-    name: string;
+    nome: string;
   @Column({ type: 'varchar', length: 150, unique: true})
     email: string;
   @Column({ type: 'varchar', length: 255})
     password: string;
-  @Column({ type: 'decimal' })
-    valor: number;
+  @Column({ type: 'decimal', default: 0 })
+    Valor: number;
   
   @OneToMany(() => Active, (active) => active.user)
     active: Active[];
