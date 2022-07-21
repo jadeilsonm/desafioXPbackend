@@ -13,6 +13,9 @@ export class Active {
   @Column({ type: 'decimal' })
     Valor: number;
 
+  @Column({ type: 'varchar', unique: true })
+    name: string;
+
   @ManyToOne(() => User, (user) => user.active)
   @JoinColumn({name: 'codCliente'})
     user: User;
