@@ -4,6 +4,7 @@ import IUser from '../interface/IUser';
 import UserRepository from '../repository/userRepository';
 import HttpException from '../shared/HttpExceptionError';
 import { generateJWTToken } from '../shared/JWT';
+import Messages from '../utils/Messages';
 import StatusCodes from '../utils/StatusCodes';
 
 const createdUser = async (user: IUser): Promise<IToken> => {
@@ -17,15 +18,21 @@ const createdUser = async (user: IUser): Promise<IToken> => {
   return { token };
 };
 
-const changeValue = async (conta: IAccountChange): Promise<IAccountChange> => {
+const changeValue = async (conta: IAccountChange, options = '+'): Promise<IAccountChange> => {
   const { CodCliente, Valor } = conta;
   const rowns = await UserRepository.findOneBy({ CodCliente });  
 
   if (!rowns) {
-    throw new HttpException(StatusCodes.NOT_FOUND, 'CodCliente not  found');
+    throw new HttpException(StatusCodes.NOT_FOUND, Messages.COD_NOT_FOUND);
+  }
+
+  if (options === '-') {
+    if( Valor > rowns.Valor) {
+      throw new HttpException(StatusCodes.NOT_FOUND, Messages.VALOR_INVALID);
+    }
   }
   
-  const newValue = +(rowns.Valor) + Valor;
+  const newValue = eval(`${rowns.Valor} ${options} ${Valor}`).toFixed(2);
   
   await UserRepository.update(CodCliente, {
     ...rowns,

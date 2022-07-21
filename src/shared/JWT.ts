@@ -15,7 +15,7 @@ export const generateJWTToken = (payload: string) =>
 export const authenticateToken = async (token?: string) => {
   const status = StatusCodes.UNAUTHORIZED;
   if (!token) {
-    throw new HttpException(status, Messages.TOKEN_NO_FOUND);
+    throw new HttpException(status, Messages.TOKEN_NOT_FOUND);
   }
   try {
     const introspection = await jwt.verify(token, SECRET, jwtConfig);

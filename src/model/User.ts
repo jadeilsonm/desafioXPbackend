@@ -12,7 +12,7 @@ export class User {
     email: string;
   @Column({ type: 'varchar', length: 255})
     password: string;
-  @Column({ type: 'decimal', default: 0 })
+  @Column({ type: 'double', default: 0.00 })
     Valor: number;
   
   @OneToMany(() => Active, (active) => active.user)

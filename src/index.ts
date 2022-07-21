@@ -1,5 +1,7 @@
 import express from 'express';
+import 'express-async-errors';
 import { AppDataSource } from './data-source';
+import httpErrorMiddleware from './middleware/httpErrorMiddleware';
 import router from './routes';
 
 AppDataSource.initialize().then(() => {
@@ -8,6 +10,8 @@ AppDataSource.initialize().then(() => {
   app.use(express.json());
 
   app.use(router);
+
+  app.use(httpErrorMiddleware);
 
   const PORT = process.env.PORT || 3000;
   
