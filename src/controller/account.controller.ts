@@ -6,6 +6,14 @@ import StatusCodes from '../utils/StatusCodes';
 
 const accountRouter = Router();
 
+accountRouter.get(
+  '/:id', 
+  async (req: Request, res: Response): Promise<Response> => {
+    const codCliente = +(req.params.id);
+    const payload = await userServices.getUser(codCliente);
+    return res.status(StatusCodes.OK).json(payload);
+  },
+);
 
 accountRouter.use(validateSchemaChange);
 

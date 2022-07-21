@@ -1,4 +1,4 @@
-import { IAccountChange } from '../interface/IDeposit';
+import IAccount, { IAccountChange } from '../interface/IDeposit';
 import IToken from '../interface/IToken';
 import IUser from '../interface/IUser';
 import UserRepository from '../repository/userRepository';
@@ -26,10 +26,8 @@ const changeValue = async (conta: IAccountChange, options = '+'): Promise<IAccou
     throw new HttpException(StatusCodes.NOT_FOUND, Messages.COD_NOT_FOUND);
   }
 
-  if (options === '-') {
-    if( Valor > rowns.Valor) {
-      throw new HttpException(StatusCodes.NOT_FOUND, Messages.VALOR_INVALID);
-    }
+  if (options === '-' && Valor > rowns.Valor) {
+    throw new HttpException(StatusCodes.NOT_FOUND, Messages.VALOR_INVALID);
   }
   
   const newValue = eval(`${rowns.Valor} ${options} ${Valor}`).toFixed(2);
@@ -39,11 +37,23 @@ const changeValue = async (conta: IAccountChange, options = '+'): Promise<IAccou
     Valor: newValue
   });
 
-
   return {
     CodCliente,
     Valor: newValue
   };
 };
 
-export default { createdUser, changeValue };
+const getUser = async (CodCliente: number): Promise<IAccount> => {
+  const rowns = await UserRepository.findOneBy({ CodCliente });
+
+  if (!rowns) {
+    throw new HttpException(StatusCodes.NOT_FOUND, Messages.COD_NOT_FOUND);
+  }
+
+  return {
+    CodCliente,
+    Saldo: rowns.Valor
+  };
+};
+
+export default { createdUser, changeValue, getUser };
