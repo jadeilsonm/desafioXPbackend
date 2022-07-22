@@ -7,14 +7,14 @@ export class Investiment {
   @PrimaryGeneratedColumn({ type: 'integer'})
     id: number;
   @Column({ type: 'integer' })
-    QtdeAtivo: number;
+    qtdeAtivo: number;
 
   @ManyToOne(() => User, (user) => user.investment)
-  @JoinColumn({name: 'codCliente'})
+  @JoinColumn({ name: 'codCliente' })
     user: User;
 
   @OneToOne(() => Active, (active) => active.investment)
-  @JoinColumn()
+  @JoinColumn({ name: 'codAtivo' })
     active: Active;
 
 }

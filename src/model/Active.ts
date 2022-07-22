@@ -5,15 +5,15 @@ import { User } from './User';
 @Entity('actives')
 export class Active {
   @PrimaryGeneratedColumn({ type: 'integer'})
-    CodAtivo: number;
+    codAtivo: number;
 
   @Column({ type: 'integer' })
-    QtdeAtivo: number;
+    qtdeAtivo: number;
 
   @Column({ type: 'decimal' })
-    Valor: number;
+    valor: number;
 
-  @Column({ type: 'varchar', unique: true })
+  @Column({ type: 'varchar'})
     name: string;
 
   @ManyToOne(() => User, (user) => user.active)

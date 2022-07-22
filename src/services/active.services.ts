@@ -6,11 +6,11 @@ import Messages from '../utils/Messages';
 import StatusCodes from '../utils/StatusCodes';
 
 const createdActive = async (activo: IActive): Promise<INewActive> => {
-  const { codCliente: CodCliente } = activo;
+  const { codCliente } = activo;
   const newActive = activeRepository.create(activo);
-  const user = await UserRepository.findOneBy({ CodCliente });
+  const user = await UserRepository.findOneBy({ codCliente });
   if (!user) {
-    throw new HttpException(StatusCodes.NOT_FOUND, Messages.COD_NOT_FOUND);
+    throw new HttpException(StatusCodes.NOT_FOUND, Messages.NOT_FOUND);
   }
   newActive.user = user;
   await activeRepository.save(newActive);
@@ -20,24 +20,38 @@ const createdActive = async (activo: IActive): Promise<INewActive> => {
 const getActive = async (cod: number): Promise<IActive[]> => {
   const rowns = await activeRepository.find({ relations: {
     user: true
+  }, where: {
+    codAtivo: cod
   }});
-  const res = rowns.filter(r => r.user.CodCliente == cod).map((a) => {
-    if (a.user.CodCliente == cod) {
+  const res = rowns.map((a) => {
+    if (a.user.codCliente == cod) {
       return {
-        CodAtivo: a.CodAtivo,
-        QtdeAtivo: a.QtdeAtivo,
-        Valor: a.Valor,
-        CodCliente: cod
+        codAtivo: a.codAtivo,
+        qtdeAtivo: a.qtdeAtivo,
+        valor: a.valor,
+        codCliente: cod
       };
-      return {};
     }
   });
+  if (!res.length) {
+    throw new HttpException(StatusCodes.NOT_FOUND, Messages.NOT_FOUND);
+  }
   return res as IActive[];
 };
 
-const FindByActive = async (CodAtivo: number) => {
-  const rowns = await activeRepository.findOneBy({ CodAtivo });
+const getAllActive = async (): Promise<IActive[]> => {
+  const rowns = await activeRepository.find({ relations: {
+    user: true
+  }});
+  return rowns as IActive[];
+};
+
+const FindByActive = async (codAtivo: number) => {
+  const rowns = await activeRepository.findOneBy({ codAtivo });
+  if (!rowns) {
+    throw new HttpException(StatusCodes.NOT_FOUND, Messages.ACTIVE_NOT_FOUND);
+  }
   return rowns;
 };
 
-export default { createdActive, getActive, FindByActive };
+export default { createdActive, getAllActive, getActive, FindByActive };

@@ -1,13 +1,13 @@
 export interface ICodCliente {
-  CodCliente: number,
+  codCliente: number,
 }
 
 export interface IAccountChange extends ICodCliente{
-  Valor: number,
+  valor: number,
 }
 
 interface IAccount extends ICodCliente{
-  Saldo: number,
+  saldo: number,
 }
 
 export default IAccount;

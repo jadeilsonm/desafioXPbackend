@@ -1,9 +1,14 @@
 enum Messages {
-  TOKEN_NOT_FOUND = 'Not found',
+  NOT_FOUND = 'Not Found',
+  ACTIVE_NOT_FOUND = 'Active Not Found',
+  TOKEN_NOT_FOUND = 'Token Not found',
   TOKEN_INVALID = 'Token Invalid',
-  DADOS_INVALID = 'Dados Invalid',
-  COD_NOT_FOUND = 'CodCliente not found',
-  VALOR_INVALID = 'Invalid withdrawal amount'
+  DADOS_INVALID = 'Data Invalid',
+  COD_NOT_FOUND = 'Client not found',
+  VALUE_INVALID = 'Invalid withdrawal amount',
+  INVALID_BALENCE = 'Invalid balence',
+  INVALID_AMOUNT = 'it is not possible to sell this amount',
+  SERVER_ERROR = 'Server Error'
 }
 
 export default Messages;

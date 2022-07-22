@@ -1,9 +1,9 @@
 import { User } from '../model/User';
 
 interface Active {
-  CodAtivo?: number,
-  QtdeAtivo: number,
-  Valor: number,
+  codAtivo?: number,
+  qtdeAtivo: number,
+  valor: number,
 }
 
 interface IActive extends Active {

@@ -6,8 +6,8 @@ import StatusCodes from '../utils/StatusCodes';
 
 
 const loginSchema = Joi.object<IAccountChange>({
-  CodCliente: Joi.number().required(), 
-  Valor: Joi.number().min(0.1).required(),
+  codCliente: Joi.number().required(), 
+  valor: Joi.number().min(0.1).required(),
 });
 
 const validateSchemaChange = (req: Request, __res: Response, next: NextFunction) => {
