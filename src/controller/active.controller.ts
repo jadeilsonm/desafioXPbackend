@@ -6,6 +6,15 @@ import StatusCodes from '../utils/StatusCodes';
 
 const activeRouter = Router();
 
+activeRouter.get(
+  '/:id', 
+  async (req: Request, res: Response): Promise<Response> => {
+    const { id } = req.params;
+    const payload = await activeServices.getActive(+(id));
+    return res.status(StatusCodes.OK).json(payload);
+  },
+);
+
 activeRouter.post(
   '/', 
   async (req: Request, res: Response): Promise<Response> => {

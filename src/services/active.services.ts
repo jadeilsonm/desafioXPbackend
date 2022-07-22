@@ -17,4 +17,27 @@ const createdActive = async (activo: IActive): Promise<INewActive> => {
   return newActive;
 };
 
-export default { createdActive };
+const getActive = async (cod: number): Promise<IActive[]> => {
+  const rowns = await activeRepository.find({ relations: {
+    user: true
+  }});
+  const res = rowns.filter(r => r.user.CodCliente == cod).map((a) => {
+    if (a.user.CodCliente == cod) {
+      return {
+        CodAtivo: a.CodAtivo,
+        QtdeAtivo: a.QtdeAtivo,
+        Valor: a.Valor,
+        CodCliente: cod
+      };
+      return {};
+    }
+  });
+  return res as IActive[];
+};
+
+const FindByActive = async (CodAtivo: number) => {
+  const rowns = await activeRepository.findOneBy({ CodAtivo });
+  return rowns;
+};
+
+export default { createdActive, getActive, FindByActive };

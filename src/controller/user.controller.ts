@@ -15,4 +15,11 @@ userRouter.post(
   },
 );
 
+userRouter.get('/',  async (req: Request, res: Response): Promise<Response> => {
+  const newUser = await userServices.getAllUser(); 
+  return res.status(StatusCodes.OK).json(newUser);
+},
+);
+
+
 export default userRouter;

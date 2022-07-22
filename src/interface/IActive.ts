@@ -1,17 +1,17 @@
 import { User } from '../model/User';
 
-interface IActive {
+interface Active {
   CodAtivo?: number,
-  codCliente?: number,
   QtdeAtivo: number,
   Valor: number,
 }
 
-export interface INewActive {
-  CodAtivo?: number,
+interface IActive extends Active {
+  codCliente?: number,
+}
+
+export interface INewActive extends Active {
   codCliente?: User,
-  QtdeAtivo: number,
-  Valor: number,
 }
 
 export default IActive;

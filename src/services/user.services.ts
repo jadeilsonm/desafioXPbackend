@@ -56,4 +56,15 @@ const getUser = async (CodCliente: number): Promise<IAccount> => {
   };
 };
 
-export default { createdUser, changeValue, getUser };
+const getAllUser = async () => {
+  const rowns = await UserRepository.findBy({ active: true });
+
+  if (!rowns) {
+    throw new HttpException(StatusCodes.NOT_FOUND, Messages.COD_NOT_FOUND);
+  }
+
+  return rowns;
+};
+
+
+export default { createdUser, changeValue, getUser, getAllUser };

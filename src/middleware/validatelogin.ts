@@ -4,7 +4,6 @@ import { IUserLogin } from '../interface/IUser';
 import HttpException from '../shared/HttpExceptionError';
 import StatusCodes from '../utils/StatusCodes';
 
-
 const loginSchema = Joi.object<IUserLogin>({
   email: Joi.string().email().required(), 
   password: Joi.string().required(),
