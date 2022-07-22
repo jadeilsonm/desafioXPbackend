@@ -17,7 +17,7 @@ activeRouter.get(
 
 activeRouter.get(
   '/', 
-  async (req: Request, res: Response): Promise<Response> => {
+  async (_req: Request, res: Response): Promise<Response> => {
     const payload = await activeServices.getAllActive();
     return res.status(StatusCodes.OK).json(payload);
   },
