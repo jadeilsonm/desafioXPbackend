@@ -2,10 +2,19 @@
 import { Request, Response, Router } from 'express';
 import validateToken from '../middleware/validateToken';
 import activeServices from '../services/active.services';
+import HttpException from '../shared/HttpExceptionError';
+import Messages from '../utils/Messages';
 
 import StatusCodes from '../utils/StatusCodes';
 
 const activeRouter = Router();
+
+/**
+ * @swagger
+ *  tags:
+ *    name: Ativos
+ *    description: EndPoint ativos
+ */
 
 activeRouter.get(
   '/:id', 
@@ -30,7 +39,10 @@ activeRouter.post(
   '/', 
   async (req: Request, res: Response): Promise<Response> => {
     const payload = await activeServices.createdActive(req.body);
-    return res.status(StatusCodes.OK).json(payload);
+    if (!payload) {
+      throw new HttpException(StatusCodes.SERVER_ERROR, Messages.SERVER_ERROR);
+    }
+    return res.status(StatusCodes.OK).send();
   },
 );
 

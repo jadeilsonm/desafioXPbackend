@@ -5,6 +5,13 @@ import StatusCodes from '../utils/StatusCodes';
 
 const loginRouter = Router();
 
+/**
+ * @swagger
+ *  tags:
+ *    name: Login
+ *    description: EndPoint Login
+ */
+
 loginRouter.post(
   '/', 
   async (req: Request, res: Response): Promise<Response> => {

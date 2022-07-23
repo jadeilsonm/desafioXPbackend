@@ -7,6 +7,13 @@ import StatusCodes from '../utils/StatusCodes';
 
 const accountRouter = Router();
 
+/**
+ * @swagger
+ *  tags:
+ *    name: Conta
+ *    description: EndPoint dados da conta
+ */
+
 accountRouter.get(
   '/:id', 
   async (req: Request, res: Response): Promise<Response> => {

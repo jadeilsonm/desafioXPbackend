@@ -7,6 +7,13 @@ import StatusCodes from '../utils/StatusCodes';
 
 const investmentRouter = Router();
 
+/**
+ * @swagger
+ *  tags:
+ *    name: Investimentos
+ *    description: EndPoint investmentos
+ */
+
 investmentRouter.get(
   '/ativos/:id', 
   async (req: Request, res: Response): Promise<Response> => {
