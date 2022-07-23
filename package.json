@@ -12,7 +12,8 @@
     "deploy": "git add . && git commit -m Heroku && git push heroku main",
     "postinstall": "tsc",
     "watch-node": "nodemon public/index.js",
-    "watch-ts": "tsc-w"
+    "watch-ts": "tsc-w",
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
   },
   "repository": {
     "type": "git",

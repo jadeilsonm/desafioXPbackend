@@ -6,10 +6,15 @@ Aplicação de investimentos e conta digital, simulando um dia a dia da vida de 
 
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
+
+* ssh
 ```
-git clone git@github.com:jadeilsonm/desafioXPbackend.git para clonar com sua chave ssh
-ou 
-git clone https://github.com/jadeilsonm/desafioXPbackend.git para clonar com http
+git clone git@github.com:jadeilsonm/desafioXPbackend.git
+```
+
+* http
+```
+git clone https://github.com/jadeilsonm/desafioXPbackend.git
 ```
 
 
@@ -29,6 +34,12 @@ git clone https://github.com/jadeilsonm/desafioXPbackend.git para clonar com htt
 
 ### ⌨️ E testes de estilo de codificação
 
+Para fazer a análise de código.
+
+```
+npm run lint
+```
+
 ## 📦 Desenvolvimento
 
 
@@ -47,8 +58,9 @@ ferramentas usadas para criar o projeto.
 
 ## 📌 Versão
 
-versão 1.0
-Foi utilizado [github](https://github.com/) para controle de versão.
+* versão 1.0
+
+* Foi utilizado [github](https://github.com/) para controle de versão.
 
 ## ✒️ Autores
 
