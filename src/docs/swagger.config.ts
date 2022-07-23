@@ -3,7 +3,7 @@ const swaggerConfig = {
     openapi: '3.0.1',
     info: {
       title: 'Documentação do desafio tecnico XP',
-      description: 'Api de ativos e investimentos, simulando uma das atividades diarias dentro da XP.',
+      description: 'API de ativos e investimentos, simulando uma das atividades diarias dentro da XP.',
       version: '1.0'
     },servers: [{
       url: 'http://localhost:3000',
