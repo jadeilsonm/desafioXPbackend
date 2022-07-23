@@ -6,7 +6,7 @@ import StatusCodes from '../utils/StatusCodes';
 
 const loginSchema = Joi.object<IUserLogin>({
   email: Joi.string().email().required(), 
-  password: Joi.string().required(),
+  password: Joi.string().min(8).required(),
 });
 
 const validateSchemaLogin = (req: Request, __res: Response, next: NextFunction) => {

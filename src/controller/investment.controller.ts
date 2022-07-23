@@ -1,10 +1,22 @@
 import { Request, Response, Router } from 'express';
+import validateToken from '../middleware/validateToken';
 import activeServices from '../services/active.services';
 import investimentServices from '../services/investiment.services';
 
 import StatusCodes from '../utils/StatusCodes';
 
 const investmentRouter = Router();
+
+investmentRouter.get(
+  '/ativos/:id', 
+  async (req: Request, res: Response): Promise<Response> => {
+    const { id } = req.params;
+    const payload = await activeServices.FindByActive(+(id));
+    return res.status(StatusCodes.OK).json(payload);
+  },
+);
+
+investmentRouter.use(validateToken);
 
 investmentRouter.post(
   '/comprar', 
@@ -28,13 +40,5 @@ investmentRouter.post(
   },
 );
 
-investmentRouter.get(
-  '/ativos/:id', 
-  async (req: Request, res: Response): Promise<Response> => {
-    const { id } = req.params;
-    const payload = await activeServices.FindByActive(+(id));
-    return res.status(StatusCodes.OK).json(payload);
-  },
-);
 
 export default investmentRouter;

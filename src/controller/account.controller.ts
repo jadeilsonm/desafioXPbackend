@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import validateSchemaChange from '../middleware/validateChangeAccount';
+import validateToken from '../middleware/validateToken';
 import userServices from '../services/user.services';
 
 import StatusCodes from '../utils/StatusCodes';
@@ -17,10 +18,12 @@ accountRouter.get(
 
 accountRouter.use(validateSchemaChange);
 
+accountRouter.use(validateToken);
+
 accountRouter.post(
   '/depositar', 
   async (req: Request, res: Response): Promise<Response> => {
-    const payload = await userServices.changeValue(req.body);
+    const payload = await userServices.changeValue(req.body, res.locals.payload);
     return res.status(StatusCodes.OK).json(payload);
   },
 );
@@ -28,7 +31,7 @@ accountRouter.post(
 accountRouter.post(
   '/sacar', 
   async (req: Request, res: Response): Promise<Response> => {
-    const payload = await userServices.changeValue(req.body, '-');
+    const payload = await userServices.changeValue(req.body, res.locals.payload, '-');
     return res.status(StatusCodes.OK).json(payload);
   },
 );

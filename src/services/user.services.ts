@@ -18,20 +18,30 @@ const createdUser = async (user: IUser): Promise<IToken> => {
   return { token };
 };
 
-const changeValue = async (conta: IAccountChange, options = '+'): Promise<IAccountChange> => {
+const changeValue = async (conta: IAccountChange, user: IUser, options = '+'): Promise<IAccountChange> => {
   const { codCliente, valor } = conta;
+
   const rowns = await UserRepository.findOneBy({ codCliente });  
+
   if (!rowns) {
     throw new HttpException(StatusCodes.NOT_FOUND, Messages.COD_NOT_FOUND);
   }
+
+  if ( rowns.email !== user.email) {
+    throw new HttpException(StatusCodes.UNAUTHORIZED, Messages.TOKEN_INVALID);
+  }
+
   if (options === '-' && valor > rowns.valor) {
     throw new HttpException(StatusCodes.NOT_FOUND, Messages.VALUE_INVALID);
   }
+
   const newValue = eval(`${rowns.valor} ${options} ${valor}`).toFixed(2);
+
   await UserRepository.update(codCliente, {
     ...rowns,
     valor: newValue
   });
+  
   return {
     codCliente,
     valor: newValue
@@ -50,11 +60,13 @@ const getUser = async (codCliente: number): Promise<IAccount> => {
 };
 
 const getAllUser = async () => {
-  const rowns = await UserRepository.findBy({ active: true });
-  if (!rowns) {
-    throw new HttpException(StatusCodes.NOT_FOUND, Messages.COD_NOT_FOUND);
-  }
-  return rowns;
+  const rowns = await UserRepository.find();
+  const res = rowns.map((user) => ({
+    codCliente: user.codCliente,
+    valor: user.valor,
+    nome: user.nome,
+  }));
+  return res;
 };
 
 

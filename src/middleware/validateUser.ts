@@ -4,11 +4,10 @@ import IUser from '../interface/IUser';
 import HttpException from '../shared/HttpExceptionError';
 import StatusCodes from '../utils/StatusCodes';
 
-
 const loginSchema = Joi.object<IUser>({
   nome: Joi.string().required(),
   email: Joi.string().email().required(), 
-  password: Joi.string().required(),
+  password: Joi.string().min(8).required(),
 });
 
 const validateSchemaUser = (req: Request, __res: Response, next: NextFunction) => {

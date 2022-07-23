@@ -1,5 +1,6 @@
 
 import { Request, Response, Router } from 'express';
+import validateToken from '../middleware/validateToken';
 import activeServices from '../services/active.services';
 
 import StatusCodes from '../utils/StatusCodes';
@@ -22,6 +23,8 @@ activeRouter.get(
     return res.status(StatusCodes.OK).json(payload);
   },
 );
+
+activeRouter.use(validateToken);
 
 activeRouter.post(
   '/', 
