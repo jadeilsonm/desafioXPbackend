@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
 import { AppDataSource } from './data-source';
@@ -12,15 +12,17 @@ AppDataSource.initialize().then(() => {
 
   app.use(cors());
 
+  app.get('/', (_req: Request, res: Response) => {
+    res.send('Ben vindo! ');
+  });
+
   app.use(router);
 
   app.use(httpErrorMiddleware);
 
   const PORT = process.env.PORT || 3000;
   
-  return app.listen(PORT, () => console.log(
-    `Server is running on PORT: ${PORT}`,
-  ));
+  return app.listen(PORT, () => console.log('Server up'));
 
 });
 
