@@ -131,9 +131,8 @@ Agora inicie o serviço:
 ```sh
 npm run start
 ```
-Se tudo ocorreu bem ira mostrar um console ***Server up*** no terminal.
-## ⚙️ Executando os testes
-
+Se tudo ocorreu bem ira mostrar a seguinte mensagem no seu console ***Server up***.
+Após isso e so abrir seu navegador ou o postman se preferir e começar a consumir os endpoints.
 
 ### ⌨️ E testes de estilo de codificação
 
