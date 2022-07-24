@@ -41,6 +41,8 @@ accountRouter.use(validateToken);
  *    get:
  *      tags: [Conta]
  *      description: Este Endpoint retorna a conta do clinte com seu codigo e seu saldo.
+ *      security:
+ *        - bearerAuth: []
  *      parameters:
  *        - in: path
  *          name: codCliente
@@ -55,7 +57,7 @@ accountRouter.use(validateToken);
  *                $ref: '#/components/schemas/Saldo' 
  */
 accountRouter.get(
-  '/:id', 
+  '/:codCliente', 
   async (req: Request, res: Response): Promise<Response> => {
     const codCliente = +(req.params.id);
     const payload = await userServices.getUser(codCliente, res.locals.payload);

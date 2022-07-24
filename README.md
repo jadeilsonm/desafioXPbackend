@@ -7,12 +7,12 @@ Aplicação de investimentos e conta digital, simulando um dia a dia da vida de 
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 
-* ssh
+* SSH
 ```
 git clone git@github.com:jadeilsonm/desafioXPbackend.git
 ```
 
-* http
+* HTTPS
 ```
 git clone https://github.com/jadeilsonm/desafioXPbackend.git
 ```
@@ -68,12 +68,12 @@ npm run start
 ```
 Se tudo ocorreu bem ira mostrar um console ***Server up*** no terminal.
 
-Se preferir poderia testar essa aplicação ja no ambiente de produção seguindo para o seguinte url:
+Se preferir poderia testar essa aplicação já no ambiente de produção seguindo para a seguinte url:
 
 ```url
 https://desafioxpjadeilson.herokuapp.com/
 ```
-Para obter mais informações sobre os endpoints var para o seguinte URL:
+Para obter mais informações sobre os endpoints var para a seguinte URL:
 ```url
 https://desafioxpjadeilson.herokuapp.com/docs
 ```
@@ -132,7 +132,7 @@ Agora inicie o serviço:
 npm run start
 ```
 Se tudo ocorreu bem ira mostrar a seguinte mensagem no seu console ***Server up***.
-Após isso e so abrir seu navegador ou o postman se preferir e começar a consumir os endpoints.
+Após isso e podera abrir seu navegador ou o postman se preferir e começar consumir os endpoints.
 
 ### ⌨️ E testes de estilo de codificação
 
@@ -156,14 +156,15 @@ Como forma de minimizar erros em no desenvolvimeto foi utilizado o typeScript pa
 
 ferramentas usadas para criar o projeto.
 
-* [nodejs](https://nodejs.org/en/) - É uma compilação empacotada do mecanismo JavaScript.
-* [npm](https://www.npmjs.com/) - Gerente de Dependência.
-* [typeScript](https://www.typescriptlang.org/) - Usada para tipagem dos paramentros e as variaveis.
-* [typeOrm](https://typeorm.io/) - ORM responsavel por gerar as migrations e relações entre os models e o banco de dados.
-* [mysql](https://www.mysql.com/) - Utilizado para armazenar os dados.
-* [heroku](https://www.heroku.com/) - Utilizado para realizar o deploy da aplicaçaõ.
+* [NodeJS](https://nodejs.org/en/) - É uma compilação empacotada do mecanismo JavaScript.
+* [NPM](https://www.npmjs.com/) - Gerente de Dependência.
+* [TypeScript](https://www.typescriptlang.org/) - Usada para tipagem dos paramentros e as variaveis.
+* [TypeOrm](https://typeorm.io/) - ORM responsavel por gerar as migrations e relações entre os models e o banco de dados.
+* [MySQL](https://www.mysql.com/) - Utilizado para armazenar os dados.
+* [Heroku](https://www.heroku.com/) - Utilizado para realizar o deploy da aplicaçaõ.
 * [JWT](https://jwt.io/) - Utilizado como padrão para autenticação
-* [swagger](https://swagger.io/) - Utilizado para documentação.
+* [Swagger](https://swagger.io/) - Utilizado para documentação.
+* [Docker](https://www.docker.com/) - Utilizado para produção e ou testes da aplicação.
 
 ## 📄 Documentação
 

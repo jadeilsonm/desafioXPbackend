@@ -18,21 +18,12 @@ const createdActive = async (activo: IActive): Promise<INewActive> => {
 };
 
 const getActive = async (cod: number): Promise<IActive[]> => {
-  const rowns = await activeRepository.find({ relations: {
-    user: true
-  }, where: {
-    codAtivo: cod
-  }});
-  const res = rowns.map((a) => {
-    if (a.user.codCliente == cod) {
-      return {
-        codAtivo: a.codAtivo,
-        qtdeAtivo: a.qtdeAtivo,
-        valor: a.valor,
-        codCliente: cod
-      };
-    }
-  });
+  const rowns = await activeRepository.find({ relations: { user: true }});
+  const res = rowns.filter(e => e.user.codCliente == cod).map((a) => ({
+    codAtivo: a.codAtivo,
+    qtdeAtivo: a.qtdeAtivo,
+    valor: a.valor,
+    codCliente: cod}));
   if (!res.length) {
     throw new HttpException(StatusCodes.NOT_FOUND, Messages.NOT_FOUND);
   }

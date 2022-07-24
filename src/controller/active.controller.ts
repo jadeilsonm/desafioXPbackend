@@ -90,10 +90,10 @@ const activeRouter = Router();
  *                  $ref: '#/components/schemas/Active' 
  */
 activeRouter.get(
-  '/:id', 
+  '/:codCliente', 
   async (req: Request, res: Response): Promise<Response> => {
-    const { id } = req.params;
-    const payload = await activeServices.getActive(+(id));
+    const { codCliente } = req.params;
+    const payload = await activeServices.getActive(+(codCliente));
     return res.status(StatusCodes.OK).json(payload);
   },
 );
