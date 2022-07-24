@@ -7,6 +7,7 @@ import router from './routes';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
 import swaggerConfig from './docs/swagger.config';
+import path from 'path';
 
 AppDataSource.initialize().then(() => {
   const app = express ();
@@ -18,7 +19,7 @@ AppDataSource.initialize().then(() => {
   app.use(cors());
 
   app.get('/', (_req: Request, res: Response) => {
-    res.send('Bem vindo!, siga para o caminho a seguir -> https://desafioxpjadeilson.herokuapp.com/docs');
+    res.sendFile(path.join(__dirname + '/index.html'));
   });
 
   app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
