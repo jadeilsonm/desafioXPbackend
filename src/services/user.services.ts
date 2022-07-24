@@ -48,10 +48,13 @@ const changeValue = async (conta: IAccountChange, user: IUser, options = '+'): P
   };
 };
 
-const getUser = async (codCliente: number): Promise<IAccount> => {
+const getUser = async (codCliente: number, user: IUser): Promise<IAccount> => {
   const rowns = await UserRepository.findOneBy({ codCliente });
   if (!rowns) {
     throw new HttpException(StatusCodes.NOT_FOUND, Messages.COD_NOT_FOUND);
+  }
+  if ( rowns.email !== user.email) {
+    throw new HttpException(StatusCodes.UNAUTHORIZED, Messages.IMPOSSIBLE_GET);
   }
   return {
     codCliente,

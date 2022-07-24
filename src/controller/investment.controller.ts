@@ -39,10 +39,15 @@ const investmentRouter = Router();
 
 /**
  * @swagger
- *  /ativos/:id:
+ *  /investimentos/ativos/{codAtivo}:
  *    get:
  *      tags: [Ativos]
  *      description: Este Endpoint retorna o ativo com o codAtivo passado como parametro
+ *      parameters:
+ *        - in: path
+ *          name: codAtivo
+ *          type: string
+ *          required: true
  *      responses:
  *        200:
  *          content:
@@ -53,10 +58,10 @@ const investmentRouter = Router();
  */
 
 investmentRouter.get(
-  '/ativos/:id', 
+  '/ativos/:codAtivo', 
   async (req: Request, res: Response): Promise<Response> => {
-    const { id } = req.params;
-    const payload = await activeServices.FindByActive(+(id));
+    const { codAtivo } = req.params;
+    const payload = await activeServices.FindByActive(+(codAtivo));
     return res.status(StatusCodes.OK).json(payload);
   },
 );
@@ -68,7 +73,9 @@ investmentRouter.use(validateToken);
  *  /investimentos/comprar:
  *    post:
  *      tags: [Investiment]
- *      description: Este Endpoint é responsavel pelo compra de ativos
+ *      description: Este Endpoint é responsavel pelo compra de ativos 
+ *      security:
+ *        - bearerAuth: []
  *      requestBody:
  *        required: true
  *        content:
@@ -97,7 +104,9 @@ investmentRouter.post(
  *  /investimentos/vender:
  *    post:
  *      tags: [Investiment]
- *      description: Este Endpoint é responsavel pelo venda de ativos
+ *      description: Este Endpoint é responsavel pelo venda de ativos 
+ *      security:
+ *        - bearerAuth: []
  *      requestBody:
  *        required: true
  *        content:

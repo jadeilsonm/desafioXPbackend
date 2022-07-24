@@ -8,7 +8,8 @@ enum Messages {
   VALUE_INVALID = 'Invalid withdrawal amount',
   INVALID_BALENCE = 'Invalid balence',
   INVALID_AMOUNT = 'it is not possible to sell this amount',
-  SERVER_ERROR = 'Server Error'
+  SERVER_ERROR = 'Server Error',
+  IMPOSSIBLE_GET = 'It is impossible to make a query on an account other than yours'
 }
 
 export default Messages;

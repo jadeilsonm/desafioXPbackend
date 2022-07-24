@@ -11,7 +11,16 @@ const swaggerConfig = {
     },{
       url: 'https://desafioxpjadeilson.herokuapp.com',
       description: 'Servidor produção'
-    }]
+    }], 
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          schema: 'bearer',
+          bearerFormat: 'JWT'
+        }
+      }
+    }
   },apis: ['./src/routes.ts', './src/controller/*ts']
 };
 

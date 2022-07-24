@@ -20,6 +20,33 @@ const activeRouter = Router();
  * @swagger
  *  components:
  *    schemas:
+ *      NovoActive:
+ *        type: object
+ *        required: 
+ *          - codCliente
+ *          - qtdeAtivo     
+ *          - valor
+ *        properties: 
+ *          codActivo:
+ *            type: number
+ *          codCliente:
+ *            type: number
+ *          valor:
+ *            type: number
+ *          name:
+ *            type: string
+ *          qtdeAtivo:
+ *            type: number
+ *        example:
+ *            valor: 10.60
+ *            codCliente: 1
+ *            qtdeAtivo: 1
+ */
+
+/**
+ * @swagger
+ *  components:
+ *    schemas:
  *      Active:
  *        type: object
  *        required: 
@@ -44,10 +71,15 @@ const activeRouter = Router();
 
 /**
  * @swagger
- *  /user:
+ *  /ativos/{codCliente}:
  *    get:
  *      tags: [Ativos]
  *      description: Este Endpoint retorna uma lista de ativos que o usario tem
+ *      parameters:
+ *        - in: path
+ *          name: codCliente
+ *          type: string
+ *          required: true
  *      responses:
  *        200:
  *          content:
@@ -68,10 +100,10 @@ activeRouter.get(
 
 /**
  * @swagger
- *  /user:
+ *  /ativos:
  *    get:
  *      tags: [Ativos]
- *      description: Este Endpoint retorna uma lista de ativos no mercado
+ *      description: Este Endpoint retorna uma lista de todos os ativos no mercado
  *      responses:
  *        200:
  *          content:
@@ -91,6 +123,26 @@ activeRouter.get(
 
 activeRouter.use(validateToken);
 
+
+/**
+ * @swagger
+ *  /ativos:
+ *    post:
+ *      tags: [Ativos]
+ *      description: Este Endpoint é responsavel por criar um novo ativo
+ *      security:
+ *        - bearerAuth: []
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              $ref: '#/components/schemas/Investiment'
+ *      responses:
+ *        200:
+ *          content:
+ */
 activeRouter.post(
   '/', 
   async (req: Request, res: Response): Promise<Response> => {
