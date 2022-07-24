@@ -10,8 +10,46 @@ const investmentRouter = Router();
 /**
  * @swagger
  *  tags:
- *    name: Investimentos
+ *    name: Investiment
  *    description: EndPoint investmentos
+ */
+
+/**
+ * @swagger
+ *  components:
+ *    schemas:
+ *      Investiment:
+ *        type: object
+ *        required: 
+ *          - codCliente 
+ *          - codAtivo
+ *          - qtdeAtivo
+ *        properties: 
+ *          codCliente:
+ *            type: number
+ *          codAtivo:
+ *            type: number
+ *          qtdeAtivo:
+ *            type: number
+ *        example:
+ *            codAtivo: 1
+ *            codCliente: 1
+ *            qtdeAtivo: 1
+ */
+
+/**
+ * @swagger
+ *  /ativos/:id:
+ *    get:
+ *      tags: [Ativos]
+ *      description: Este Endpoint retorna o ativo com o codAtivo passado como parametro
+ *      responses:
+ *        200:
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                $ref: '#/components/schemas/Active' 
  */
 
 investmentRouter.get(
@@ -25,6 +63,24 @@ investmentRouter.get(
 
 investmentRouter.use(validateToken);
 
+/**
+ * @swagger
+ *  /investimentos/comprar:
+ *    post:
+ *      tags: [Investiment]
+ *      description: Este Endpoint é responsavel pelo compra de ativos
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              $ref: '#/components/schemas/Investiment'
+ *      responses:
+ *        200:
+ *          content:
+ */
+
 investmentRouter.post(
   '/comprar', 
   async (req: Request, res: Response): Promise<Response> => {
@@ -35,6 +91,24 @@ investmentRouter.post(
     return res.status(StatusCodes.OK).send();
   },
 );
+
+/**
+ * @swagger
+ *  /investimentos/vender:
+ *    post:
+ *      tags: [Investiment]
+ *      description: Este Endpoint é responsavel pelo venda de ativos
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              $ref: '#/components/schemas/Investiment'
+ *      responses:
+ *        200:
+ *          content:
+ */
 
 investmentRouter.post(
   '/vender', 

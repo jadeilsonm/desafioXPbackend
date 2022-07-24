@@ -16,6 +16,47 @@ const activeRouter = Router();
  *    description: EndPoint ativos
  */
 
+/**
+ * @swagger
+ *  components:
+ *    schemas:
+ *      Active:
+ *        type: object
+ *        required: 
+ *          - qtdeAtivo     
+ *          - valor
+ *        properties: 
+ *          codActivo:
+ *            type: number
+ *          codCliente:
+ *            type: number
+ *          valor:
+ *            type: number
+ *          name:
+ *            type: string
+ *          qtdeAtivo:
+ *            type: number
+ *        example:
+ *            valor: 10.60
+ *            codCliente: 1
+ *            qtdeAtivo: 1
+ */
+
+/**
+ * @swagger
+ *  /user:
+ *    get:
+ *      tags: [Ativos]
+ *      description: Este Endpoint retorna uma lista de ativos que o usario tem
+ *      responses:
+ *        200:
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: array
+ *                items:
+ *                  $ref: '#/components/schemas/Active' 
+ */
 activeRouter.get(
   '/:id', 
   async (req: Request, res: Response): Promise<Response> => {
@@ -25,6 +66,21 @@ activeRouter.get(
   },
 );
 
+/**
+ * @swagger
+ *  /user:
+ *    get:
+ *      tags: [Ativos]
+ *      description: Este Endpoint retorna uma lista de ativos no mercado
+ *      responses:
+ *        200:
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: array
+ *                items:
+ *                  $ref: '#/components/schemas/Active' 
+ */
 activeRouter.get(
   '/', 
   async (_req: Request, res: Response): Promise<Response> => {

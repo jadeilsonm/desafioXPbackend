@@ -12,6 +12,47 @@ const loginRouter = Router();
  *    description: EndPoint Login
  */
 
+/**
+ * @swagger
+ *  components:
+ *    schemas:
+ *      Login:
+ *        type: object
+ *        required: 
+ *          - email
+ *          - password
+ *        properties: 
+ *          password:
+ *            type: string
+ *          email:
+ *            type: string
+ *        example:
+ *            password: teste123
+ *            email: teste@gmail.com
+ */
+
+/**
+ * @swagger
+ *  /login:
+ *    post:
+ *      tags: [Login]
+ *      description: Este Endpoint é responsavel pelo login do usuario
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              $ref: '#/components/schemas/Login'
+ *      responses:
+ *        200:
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                $ref: '#/components/schemas/Token' 
+ */
+
 loginRouter.post(
   '/', 
   async (req: Request, res: Response): Promise<Response> => {

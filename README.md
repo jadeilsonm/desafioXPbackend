@@ -131,6 +131,7 @@ Agora inicie o serviço:
 ```sh
 npm run start
 ```
+Se tudo ocorreu bem ira mostrar um console ***Server up*** no terminal.
 ## ⚙️ Executando os testes
 
 
